@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/loginParent"
     android:orientation="vertical"
-    tools:context="com.example.sharingbookshelf.Activities.RegisterInforActivity">
+    tools:context="com.example.sharingbookshelf.Activities.SelectAgeAreaActivity">
 
     <ScrollView style="@style/parent">
 

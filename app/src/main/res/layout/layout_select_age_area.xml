@@ -113,20 +113,7 @@
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:onClick="button_login"
             android:text="책장 인식하러 가기" />
-
-        <TextView
-            android:id="@+id/homeView"
-            style="@style/parent"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:layout_marginBottom="30dp"
-            android:background="?attr/selectableItemBackground"
-            android:onClick="viewRegisterClicked"
-            android:text="홈으로 건너뛰기"
-            android:textAlignment="center"
-            android:textColor="@color/primaryTextColor"
-            android:textStyle="bold" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

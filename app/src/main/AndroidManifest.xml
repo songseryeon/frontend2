@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.HomeActivity"></activity>
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
@@ -21,15 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.LoginResultActivity" ></activity>
+        <activity android:name=".Activities.LoginResultActivity" />
         <activity
             android:name=".Activities.RegisterActivity"
             android:theme="@style/SplashTheme" ></activity>
         <activity android:name=".Activities.SelectAgeAreaActivity"
             android:theme="@style/StatusBar"></activity>
         <activity android:name=".Activities.TakingPhotoActivity"
-            android:theme="@style/Theme.AppCompat"></activity>
-        <activity android:name=".Activities.HomeActivity"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>
 

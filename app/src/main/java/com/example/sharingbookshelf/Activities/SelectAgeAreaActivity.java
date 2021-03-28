@@ -24,6 +24,7 @@ public class SelectAgeAreaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_select_age_area);
 
         // 카메라로 전환
@@ -34,16 +35,7 @@ public class SelectAgeAreaActivity extends Activity {
                 startActivity(intent); //intent => Activity끼리 서로 호출하기 위해서 필요한 통신장치.
             }
         });
-
-        // 홈 화면으로 전환
-        homeview = (TextView) findViewById(R.id.homeView);
-        homeview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class); //1번 파라미터 : 메인 액티비티 자신, 2번 : 호출할 클래스
-                startActivity(intent); //intent => Activity끼리 서로 호출하기 위해서 필요한 통신장치.
-            }
-        });
-
+        
         // 자녀 나이 선택
         sp_age = (Spinner) findViewById(R.id.reg_childAge);
         //age = findViewById(R.id.showage);
@@ -92,5 +84,4 @@ public class SelectAgeAreaActivity extends Activity {
                 break;
         }
     }
-
 }

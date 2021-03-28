@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
 public class JoinData {
     @SerializedName("email") //json key값이랑 똑같아야함
     private String email;
-    @SerializedName("nickname")
-    private String nickname;
+    @SerializedName("name")
+    private String name;
     @SerializedName("password")
     private String password;
 
-    public JoinData(String email, String nickname, String password) {
+    public JoinData(String email, String name, String password) {
         this.email = email;
-        this.nickname = nickname;
+        this.name = name;
         this.password = password;
     }
 }

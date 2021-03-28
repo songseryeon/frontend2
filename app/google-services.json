@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "113706852521",
+    "project_id": "ibookshare--login",
+    "storage_bucket": "ibookshare--login.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113706852521:android:0d49f8a32ca552944149b8",
+        "android_client_info": {
+          "package_name": "com.example.sharingbookshelf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113706852521-v8l8obg65hp1ps29pt509mtkif62glkb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sharingbookshelf",
+            "certificate_hash": "ec3f13858ea1210b39cedd600577561e8dac9aa1"
+          }
+        },
+        {
+          "client_id": "113706852521-2p3hj44599o74g7r478skjpr1jetm7qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKdnb6Ds-p6JztLG76iX83SM9I-qvUvls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113706852521-2p3hj44599o74g7r478skjpr1jetm7qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
