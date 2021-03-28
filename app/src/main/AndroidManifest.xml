@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon_book"
+        android:icon="@mipmap/ic_launcherr"
         android:label="아이북쉐어"
-        android:roundIcon="@drawable/icon_book"
+        android:roundIcon="@mipmap/ic_launcherr_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
@@ -25,7 +25,11 @@
         <activity
             android:name=".Activities.RegisterActivity"
             android:theme="@style/SplashTheme" ></activity>
+        <activity android:name=".Activities.SelectAgeAreaActivity"
+            android:theme="@style/StatusBar"></activity>
         <activity android:name=".Activities.TakingPhotoActivity"
+            android:theme="@style/Theme.AppCompat"></activity>
+        <activity android:name=".Activities.HomeActivity"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>
 

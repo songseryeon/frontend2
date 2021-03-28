@@ -13,6 +13,7 @@
     <color name="textColorPrimary">#ffffff</color>
     <color name="textColor">#212121</color>
     <color name="colorAccent">#FF5722</color>
+    <color name="scrollbar_color">#FF196C96</color>
 
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
