@@ -18,7 +18,6 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,7 +26,8 @@
             android:name=".Activities.RegisterActivity"
             android:theme="@style/SplashTheme" ></activity>
         <activity android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar"></activity>
+            android:theme="@style/StatusBar">
+        </activity>
         <activity android:name=".Activities.TakingPhotoActivity"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>

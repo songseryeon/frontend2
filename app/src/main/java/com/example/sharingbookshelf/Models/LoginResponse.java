@@ -1,47 +1,34 @@
 package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
-
-//로그인 요청에 대한 응답으로 돌아올 데이터. DTO랑 비슷
+//DTO
 public class LoginResponse {
+    @SerializedName("code")
+    private int code;
 
-    @SerializedName("mem_id")
-    private int mem_id;
-    @SerializedName("email")
-    private String email;
-    @SerializedName("password")
-    private String password;
+    @SerializedName("message")
+    private String msg;
 
-    public int getMem_id() {
-        return mem_id;
+    @SerializedName("flag")
+    private int flag;
+
+    @SerializedName("token")
+    private String token;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setMem_id(int mem_id) {
-        this.mem_id = mem_id;
+    public String getMsg() {
+        return msg;
     }
 
-    public String getEmail() {
-        return email;
+    public int getFlag() {
+        return flag;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getToken() {
+        return token;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        String str = "[mem] " + mem_id + " => email = " + email + " , password = " + password;
-        return str;
-    }
-
 }
-
 

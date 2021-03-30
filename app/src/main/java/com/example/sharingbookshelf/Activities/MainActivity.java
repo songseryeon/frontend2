@@ -9,8 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.JoinData;
-import com.example.sharingbookshelf.Models.JoinResponse;
+import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.R;
 import com.example.sharingbookshelf.RetrofitClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -46,10 +45,20 @@ public class MainActivity extends AppCompatActivity {
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
-
     public int getStatusCode() {
         return statusCode;
     }
+
+
+    private static String JWT;
+
+    public static String getJWT() {
+        return JWT;
+    }
+    public static void setJWT(String JWT) {
+        MainActivity.JWT = JWT;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +109,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                // [START_EXCLUDE]
                 updateUI(null);
-                // [END_EXCLUDE]
             }
         }
     }
@@ -118,22 +125,29 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            retrofitServiceApi = RetrofitClient.getRetrofit().create(RetrofitServiceApi.class);
-                            Call<JoinResponse> call = retrofitServiceApi.userJoin(new JoinData(user.getEmail(), user.getDisplayName(), user.getUid()));
-                            call.enqueue(new Callback<JoinResponse>() {
-                                @Override
-                                public void onResponse(Call<JoinResponse> call, Response<JoinResponse> response) {
-                                    System.out.println(response.code());
-                                    JoinResponse result = response.body();
-                                    setStatusCode(result.getCode());
-                                    updateUI(user);
-                                }
 
-                                @Override
-                                public void onFailure(Call<JoinResponse> call, Throwable t) {
-                                    System.out.println(t);
-                                    updateUI(null);
-                                }
+                            /* google token 서버로 보내기 */
+                            assert user != null;
+                            user.getIdToken(true).addOnSuccessListener(result -> {
+                                String googleToken = result.getToken();
+                                retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, googleToken);
+                                Call<LoginResponse> call = retrofitServiceApi.userLogin();
+                                call.enqueue(new Callback<LoginResponse>() {
+                                    @Override
+                                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                                        LoginResponse result = response.body();
+                                        setStatusCode(result.getFlag());
+                                        setJWT(result.getToken());
+                                        System.out.println("code: " + result.getCode() + " msg: " + result.getMsg() + " token => " + getJWT());
+                                        updateUI(user);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                                        System.out.println(t);
+                                        updateUI(null);
+                                    }
+                                });
                             });
 
                         } else {
@@ -157,11 +171,11 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         int code = getStatusCode();
         if (user != null) {
-            if (code == 200) { //기존회원
+            if (code == 1) { //기존회원
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 finish();
-            } else if (code == 201) { //신규회원은 자녀선택부터
+            } else if (code == 0) { //신규회원은 자녀선택부터
                 Intent intent = new Intent(this, SelectAgeAreaActivity.class);
                 startActivity(intent);
                 finish();
