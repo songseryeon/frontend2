@@ -42,13 +42,15 @@ public class MainActivity extends AppCompatActivity {
         String password = login_password.getText().toString();
 
         if (view.getId() == R.id.login_button) {
-            Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
+            //Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
+            Intent intent = new Intent(MainActivity.this, TakingPhotoActivity.class);
             intent.putExtra("email", email);
             intent.putExtra("password", password);
             Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         } else if (view.getId() == R.id.login_button_Google) {
-            Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
+            //Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
+            Intent intent = new Intent(MainActivity.this, TakingPhotoActivity.class);
             startActivity(intent);
         }
     }
