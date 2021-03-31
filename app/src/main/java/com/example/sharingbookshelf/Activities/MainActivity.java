@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //활동을 초기화할 때 현재 로그인 상태인지 확인
+   /* //활동을 초기화할 때 현재 로그인 상태인지 확인
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
