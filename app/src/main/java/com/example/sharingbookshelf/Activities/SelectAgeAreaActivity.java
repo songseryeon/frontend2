@@ -2,24 +2,35 @@ package com.example.sharingbookshelf.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.sharingbookshelf.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 public class SelectAgeAreaActivity extends Activity {
 
-    Button btn_camera, btn_address;
+    Button btn_home, btn_address;
     Spinner sp_age;
     TextView homeview, et_address;
+    ImageView profile;
     String[] ages = {"1세","2세","3세","4세","5세","6세","7세","8세","9세","10세",
             "11세","12세","13세","14세","15세","16세","17세","18세"};
 
+
+
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
+    private static final int GET_GALLERY_IMAGE = 20000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +39,14 @@ public class SelectAgeAreaActivity extends Activity {
         setContentView(R.layout.activity_select_age_area);
 
         // 카메라로 전환
-        btn_camera = (Button) findViewById(R.id.camera_button);
-        btn_camera.setOnClickListener(new View.OnClickListener() {
+        btn_home = (Button) findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TakingPhotoActivity.class); //1번 파라미터 : 메인 액티비티 자신, 2번 : 호출할 클래스
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class); //1번 파라미터 : 메인 액티비티 자신, 2번 : 호출할 클래스
                 startActivity(intent); //intent => Activity끼리 서로 호출하기 위해서 필요한 통신장치.
             }
         });
-        
+
         // 자녀 나이 선택
         sp_age = (Spinner) findViewById(R.id.reg_childAge);
         //age = findViewById(R.id.showage);
@@ -68,6 +79,16 @@ public class SelectAgeAreaActivity extends Activity {
                 }
             });
         }
+
+        profile = findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent in = new Intent(Intent.ACTION_PICK);
+                in.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(in, GET_GALLERY_IMAGE);
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
@@ -82,6 +103,18 @@ public class SelectAgeAreaActivity extends Activity {
                     }
                 }
                 break;
+            case GET_GALLERY_IMAGE:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        InputStream ins = getContentResolver().openInputStream(intent.getData());
+                        Bitmap bm = BitmapFactory.decodeStream(ins);
+                        ins.close();
+                        profile.setImageBitmap(bm);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
         }
     }
 }

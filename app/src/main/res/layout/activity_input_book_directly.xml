@@ -20,44 +20,22 @@
             android:id="@+id/linearlayout1"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
+            android:gravity="center">
 
-            <!-- 프로필 사진 불러오기 -->
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/icon_logo"
-                android:layout_gravity="center_vertical"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/background"/>
-
-            <!-- 닉네임 불러오기 -->
+            <!-- 화살표랑 엑스 drawable에 그려서 추가 -->
             <TextView
-                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="nickname"
+                android:text="정보 입력하기"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                android:textColor="#000000"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="2dp"
-                android:text="님의 홈"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="@color/half_black"/>
 
         </LinearLayout>
 
-        <include layout="@layout/layout_home"/>
+        <include layout="@layout/layout_input_book_directly"/>
 
     </FrameLayout>
 

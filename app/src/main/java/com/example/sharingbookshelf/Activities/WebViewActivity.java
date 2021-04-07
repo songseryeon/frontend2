@@ -1,3 +1,4 @@
+/*
 package com.example.sharingbookshelf.Activities;
 
 import android.content.Intent;
@@ -50,3 +51,4 @@ public class WebViewActivity extends AppCompatActivity {
         browser.loadUrl("http://서버주소/daum.html");
     }
 }
+*/

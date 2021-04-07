@@ -15,25 +15,91 @@
         android:layout_gravity="center"
         android:padding="@dimen/loginViewsMargin">
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/reg_childAge2"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="80dp"-->
-<!--            android:hint="자녀의 나이를 선택하세요">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/reg_childAge2"-->
+        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="80dp"-->
+        <!--            android:hint="자녀의 나이를 선택하세요">-->
 
-<!--            <AutoCompleteTextView-->
-<!--                android:id="@+id/showage"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="none"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--            <AutoCompleteTextView-->
+        <!--                android:id="@+id/showage"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:inputType="none"/>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_profile_default"
+                app:civ_border_color="@color/half_black"
+                app:civ_border_width="2dp"
+                android:maxWidth="150dp"
+                android:maxHeight="150dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/profile"
+                android:text="프로필을 등록하세요"
+                android:textColor="#147AFE"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="닉네임"
+                android:textColor="#147AFE"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/input_nickname"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/nickname"
+                android:layout_marginLeft="20dp" />
+
+            <Button
+                android:id="@+id/check_nickname"
+                style="@style/parent"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/input_nickname"
+                android:background="@color/primaryTextColor"
+                android:text="확인"
+                android:textAlignment="center"
+                android:textSize="12dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:id="@+id/childage"
@@ -109,7 +175,7 @@
 
 
         <Button
-            android:id="@+id/camera_button"
+            android:id="@+id/btn_home"
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"

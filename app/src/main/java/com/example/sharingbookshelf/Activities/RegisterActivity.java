@@ -134,4 +134,5 @@ public class RegisterActivity extends AppCompatActivity {
         return password.length() >= 6;
     }
 
-}*/
+}
+*/

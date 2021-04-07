@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    /* google login */
+    // google login
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "GoogleActivity";
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            /* google token 서버로 보내기 */
+                            //google token 서버로 보내기
                             assert user != null;
                             user.getIdToken(true).addOnSuccessListener(result -> {
                                 String googleToken = result.getToken();
