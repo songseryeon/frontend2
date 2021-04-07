@@ -3,11 +3,6 @@
     package="com.example.sharingbookshelf">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/> //카메라 권한 받기
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  //외부 저장소에 저장
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcherr"
@@ -20,20 +15,12 @@
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-<!--        <activity android:name=".Activities.LoginResultActivity" />-->
-<!--        <activity-->
-<!--            android:name=".Activities.RegisterActivity"-->
-<!--            android:theme="@style/SplashTheme" ></activity>-->
-        <activity android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
+        <activity android:name=".Activities.WebViewActivity"></activity>
+        <activity android:name=".Activities.TakingPhotoActivity"
+            android:theme="@style/Theme.AppCompat">
         </activity>
-<!--        <activity android:name=".Activities.TakingPhotoActivity"-->
-<!--            android:theme="@style/Theme.AppCompat"></activity>-->
+
     </application>
 
 </manifest>
