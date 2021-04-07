@@ -1,9 +1,9 @@
+/*
 package com.example.sharingbookshelf.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sharingbookshelf.R;
 
 public class WebViewActivity extends AppCompatActivity {
-
     private WebView browser;
 
     class MyJavaScriptInterface
@@ -24,25 +23,21 @@ public class WebViewActivity extends AppCompatActivity {
         @SuppressWarnings("unused")
         public void processDATA(String data) {
             Bundle extra = new Bundle();
-            Intent intent = getIntent();
+            Intent intent = new Intent();
             extra.putString("data", data);
             intent.putExtras(extra);
             setResult(RESULT_OK, intent);
-            killActivity();
+            finish();
         }
-    }
-
-    private void killActivity() {
-        finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_locationview);
 
-        browser = (WebView)findViewById(R.id.webView);
+        browser = (WebView) findViewById(R.id.webView);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.addJavascriptInterface(new MyJavaScriptInterface(), "Android");
 
@@ -53,7 +48,7 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("http://10.0.2.2:3000/daum.html");
+        browser.loadUrl("http://서버주소/daum.html");
     }
-
 }
+*/

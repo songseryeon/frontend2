@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    /* google login */
+    // google login
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "GoogleActivity";
@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-   /* //활동을 초기화할 때 현재 로그인 상태인지 확인
+    //활동을 초기화할 때 현재 로그인 상태인지 확인
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
-    }*/
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            /* google token 서버로 보내기 */
+                            //google token 서버로 보내기
                             assert user != null;
                             user.getIdToken(true).addOnSuccessListener(result -> {
                                 String googleToken = result.getToken();
