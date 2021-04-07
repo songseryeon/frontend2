@@ -1,4 +1,3 @@
-/*
 package com.example.sharingbookshelf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,4 +53,3 @@ public class TakingPhotoActivity extends AppCompatActivity implements View.OnCli
         }
     }
 }
-*/
