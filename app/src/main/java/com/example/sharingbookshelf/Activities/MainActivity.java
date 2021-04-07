@@ -35,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
     /* google login */
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    private static final String TAG = "GoogleActivity";
+    private final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    private SignInButton login_google;
 
     private RetrofitServiceApi retrofitServiceApi;
-    private int statusCode;
 
+    private int statusCode;
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
@@ -50,15 +49,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static String JWT;
-
+    private static String accessToken;
     public static String getJWT() {
-        return JWT;
+        return accessToken;
     }
-    public static void setJWT(String JWT) {
-        MainActivity.JWT = JWT;
+    public static void setJWT(String accessToken) {
+        MainActivity.accessToken = accessToken;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login_google = findViewById(R.id.signInButton);
+        SignInButton login_google = findViewById(R.id.signInButton);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -134,17 +131,18 @@ public class MainActivity extends AppCompatActivity {
                                 Call<LoginResponse> call = retrofitServiceApi.userLogin();
                                 call.enqueue(new Callback<LoginResponse>() {
                                     @Override
-                                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                                    public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                                         LoginResponse result = response.body();
+                                        Log.d("난리났네난리났어", result.getAccessToken());
                                         setStatusCode(result.getFlag());
-                                        setJWT(result.getToken());
-                                        System.out.println("code: " + result.getCode() + " msg: " + result.getMsg() + " token => " + getJWT());
+                                        setJWT(result.getAccessToken());
+                                        Log.d("난리났네난리났어","code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
                                         updateUI(user);
                                     }
 
                                     @Override
-                                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                                        System.out.println(t);
+                                    public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                                        t.printStackTrace();
                                         updateUI(null);
                                     }
                                 });

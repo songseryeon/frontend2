@@ -3,13 +3,17 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+repositories {
+    mavenCentral()
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.sharingbookshelf"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,5 +50,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    //for zxing - barcode
+    implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 
 }
