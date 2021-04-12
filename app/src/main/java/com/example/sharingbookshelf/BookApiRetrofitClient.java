@@ -8,9 +8,9 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
-
-    public static final String BASE_URL = "http://10.0.2.2:3000/";
+public class BookApiRetrofitClient {
+    public static final String BASE_URL = "https://dapi.kakao.com/";
+    private static final String authCode = "14a0c004c5eaeb4ddb9a71b0cb6862ce";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -22,21 +22,14 @@ public class RetrofitClient {
     private static Retrofit retrofit = builder.build();
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null);
-    }
-
-    public static <S> S createService(
-            Class<S> serviceClass, final String authToken) {
-        if (!TextUtils.isEmpty(authToken)) {
             AuthenticationInterceptor interceptor =
-                    new AuthenticationInterceptor("Bearer " + authToken);
+                    new AuthenticationInterceptor("KakaoAK " + authCode);
 
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
                 builder.client(httpClient.build());
                 retrofit = builder.build();
             }
-        }
         return retrofit.create(serviceClass);
     }
 }

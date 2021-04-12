@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import com.example.sharingbookshelf.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -15,7 +16,10 @@ public class BarcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taking_photo);
+        intentIntegratorSettings();
+    }
 
+    private void intentIntegratorSettings() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(ZxingActivity.class); //세로모드
         integrator.setOrientationLocked(false);
@@ -23,28 +27,31 @@ public class BarcodeActivity extends AppCompatActivity {
         integrator.setBarcodeImageEnabled(true);
         integrator.initiateScan();
         //new IntentIntegrator(this).initiateScan();
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
+        if (result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                finish();
             } else {
                 //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String ISBN = result.getContents();
-                Bundle extra = new Bundle();
+                Intent intent = new Intent(getApplicationContext(), TakingPhotoActivity.class);
+                intent.putExtra("ISBN", ISBN);
+                setResult(RESULT_OK, intent);
+                finish();
+                /*Bundle extra = new Bundle();
                 Intent intent = getIntent();
                 extra.putString("ISBN", ISBN);
                 intent.putExtras(extra);
                 setResult(RESULT_OK, intent);
-                finish();
+                finish();*/
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 }

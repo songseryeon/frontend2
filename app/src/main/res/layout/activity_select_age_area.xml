@@ -42,13 +42,12 @@
                 android:layout_marginRight="30dp"
                 android:orientation="vertical">
 
-
                 <TextView
                     style="@style/headerText"
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
                     android:text="회원정보 입력"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <include layout="@layout/layout_select_age_area" />
 
