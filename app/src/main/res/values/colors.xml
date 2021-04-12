@@ -21,5 +21,13 @@
     <color name="loginBkColor">#f0f0f0</color>
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
+    <!--colors for floating action menu-->
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
 
 </resources>

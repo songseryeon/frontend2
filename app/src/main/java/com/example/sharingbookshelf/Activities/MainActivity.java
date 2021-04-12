@@ -32,6 +32,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String MAIN_TAG = "아이북쉐어";
+
     /* google login */
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -41,18 +43,22 @@ public class MainActivity extends AppCompatActivity {
     private RetrofitServiceApi retrofitServiceApi;
 
     private int statusCode;
+
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
+
     public int getStatusCode() {
         return statusCode;
     }
 
 
     private static String accessToken;
+
     public static String getJWT() {
         return accessToken;
     }
+
     public static void setJWT(String accessToken) {
         MainActivity.accessToken = accessToken;
     }
@@ -95,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -133,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                                         LoginResponse result = response.body();
-                                        Log.d("난리났네난리났어", result.getAccessToken());
+                                        Log.d(MAIN_TAG, result.getAccessToken());
                                         setStatusCode(result.getFlag());
                                         setJWT(result.getAccessToken());
-                                        Log.d("난리났네난리났어","code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
+                                        Log.d(MAIN_TAG, "code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
                                         updateUI(user);
                                     }
 
@@ -178,9 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-
         }
     }
-
-
 }

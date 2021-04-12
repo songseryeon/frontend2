@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/scanBarcode"
+        android:title="카메라로 바코드 스캔" />
+    <item
+        android:id="@+id/searchBookName"
+        android:title="ISBN 혹은 책 이름으로 검색" />
+    <item
+        android:id="@+id/inputdirectly"
+        android:title="수동으로 정보 입력" />
+</menu>
