@@ -6,6 +6,5 @@
     <string name="login_username_hint">닉네임</string>
     <string name="signup_login_hint">이미 계정이 있으신가요? 로그인</string>
     <string name="login_signup_hint">계정이 없으신가요? 회원가입</string>
-    <string name="sex_boy">남</string>
-    <string name="sex_girl">여</string>
+    <string name="cameraButton">바코드로 추가</string>
 </resources>

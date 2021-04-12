@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sharingbookshelf">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcherr"
         android:label="아이북쉐어"
         android:roundIcon="@mipmap/ic_launcherr_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.HomeActivity"></activity>
+        <activity android:name=".Activities.BookDetailsPopupActivity"></activity>
+        <activity android:name=".Activities.SelfAddBookPopupActivity" />
+        <activity android:name=".Activities.BarcodeActivity" />
+        <activity
+            android:name=".Activities.ZxingActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".Activities.HomeActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/SplashTheme">
-        </activity>
-        <activity android:name=".Activities.WebViewActivity"></activity>
-        <activity android:name=".Activities.TakingPhotoActivity"
-            android:theme="@style/Theme.AppCompat">
-        </activity>
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".Activities.SelectAgeAreaActivity"
+            android:theme="@style/StatusBar" />
+        <activity android:name=".Activities.WebViewActivity" />
+        <activity
+            android:name=".Activities.TakingPhotoActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat"
+            tools:replace="screenOrientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

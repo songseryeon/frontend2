@@ -32,33 +32,36 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    // google login
+    public static final String MAIN_TAG = "아이북쉐어";
+
+    /* google login */
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    private static final String TAG = "GoogleActivity";
+    private final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    private SignInButton login_google;
 
     private RetrofitServiceApi retrofitServiceApi;
+
     private int statusCode;
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
+
     public int getStatusCode() {
         return statusCode;
     }
 
 
-    private static String JWT;
+    private static String accessToken;
 
     public static String getJWT() {
-        return JWT;
-    }
-    public static void setJWT(String JWT) {
-        MainActivity.JWT = JWT;
+        return accessToken;
     }
 
+    public static void setJWT(String accessToken) {
+        MainActivity.accessToken = accessToken;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login_google = findViewById(R.id.signInButton);
+        SignInButton login_google = findViewById(R.id.signInButton);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,20 +88,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //활동을 초기화할 때 현재 로그인 상태인지 확인
+   /* //활동을 초기화할 때 현재 로그인 상태인지 확인
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            //google token 서버로 보내기
+                            /* google token 서버로 보내기 */
                             assert user != null;
                             user.getIdToken(true).addOnSuccessListener(result -> {
                                 String googleToken = result.getToken();
@@ -134,17 +136,18 @@ public class MainActivity extends AppCompatActivity {
                                 Call<LoginResponse> call = retrofitServiceApi.userLogin();
                                 call.enqueue(new Callback<LoginResponse>() {
                                     @Override
-                                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                                    public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                                         LoginResponse result = response.body();
+                                        Log.d(MAIN_TAG, result.getAccessToken());
                                         setStatusCode(result.getFlag());
-                                        setJWT(result.getToken());
-                                        System.out.println("code: " + result.getCode() + " msg: " + result.getMsg() + " token => " + getJWT());
+                                        setJWT(result.getAccessToken());
+                                        Log.d(MAIN_TAG, "code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
                                         updateUI(user);
                                     }
 
                                     @Override
-                                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                                        System.out.println(t);
+                                    public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                                        t.printStackTrace();
                                         updateUI(null);
                                     }
                                 });
@@ -180,9 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-
         }
     }
-
-
 }

@@ -1,57 +1,72 @@
-/*
 package com.example.sharingbookshelf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.ImageView;
 import com.example.sharingbookshelf.R;
-import com.google.firebase.auth.FirebaseAuth;
 
-public class TakingPhotoActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnRevoke, btnLogout;
-    private FirebaseAuth mAuth;
+public class TakingPhotoActivity extends AppCompatActivity {
+    private static final String TAG = "iBookShare";
+    private static final int BARCODE_ACTIVITY = 10000;
+    private static final int SELFADD_ACTIVITY =  10001;
 
+    private ImageView iv_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taking_photo);
 
-        btnLogout = findViewById(R.id.btn_logout);
-        btnRevoke = findViewById(R.id.btn_revoke);
+        Button btn_photo = findViewById(R.id.btn_barcode);
+        Button btn_selfAddBook = findViewById(R.id.btn_selfAddBook);
 
-        mAuth = FirebaseAuth.getInstance();
+        iv_photo = findViewById(R.id.iv_photo);
 
-        btnLogout.setOnClickListener(this);
-        btnRevoke.setOnClickListener(this);
-
-    }
-
-    //로그아웃
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-    }
-
-    //탈퇴
-    private void revokeAccess() {
-        mAuth.getCurrentUser().delete();
+        btn_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.btn_barcode) {
+                    Intent intent = new Intent(TakingPhotoActivity.this, BarcodeActivity.class);
+                    startActivityForResult(intent, BARCODE_ACTIVITY);
+                }
+                if (v.getId() == R.id.btn_selfAddBook) {
+                    Intent intent = new Intent(TakingPhotoActivity.this, SelfAddBookPopupActivity.class);
+                    intent.putExtra("data", "Test Popup");
+                    startActivityForResult(intent, SELFADD_ACTIVITY);
+                }
+            }
+        });
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_logout:
-                signOut();
-                finishAffinity();
-                break;
-            case R.id.btn_revoke:
-                revokeAccess();
-                finishAffinity();
-                break;
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == BARCODE_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                String data = intent.getExtras().getString("ISBN");
+                if (data != null) {
+                    //et_address.setText(data);
+                    Log.d(TAG, data);
+                }
+            }
+        }
+        if (requestCode == SELFADD_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                String data = intent.getExtras().getString("data");
+                if (data != null) {
+                    //et_address.setText(data);
+                }
+            }
         }
     }
+
+
 }
-*/
+
+
+
+

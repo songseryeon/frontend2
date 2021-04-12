@@ -12,101 +12,187 @@
 
     <LinearLayout
         style="@style/linearParent"
+        android:layout_height="530dp"
         android:layout_gravity="center"
         android:padding="@dimen/loginViewsMargin">
 
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/reg_childAge2"-->
-        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="80dp"-->
-        <!--            android:hint="자녀의 나이를 선택하세요">-->
-
-        <!--            <AutoCompleteTextView-->
-        <!--                android:id="@+id/showage"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:inputType="none"/>-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
-
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/profileView"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile_default"
-                app:civ_border_color="@color/half_black"
-                app:civ_border_width="2dp"
                 android:maxWidth="150dp"
-                android:maxHeight="150dp" />
+                android:maxHeight="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_logo" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/profile"
-                android:text="프로필을 등록하세요"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_toRightOf="@+id/profileView"
+                android:text="프로필 사진을\n등록해보세요!"
                 android:textColor="#147AFE"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/nickname"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_centerVertical="true"
+                android:paddingTop="10dp"
                 android:text="닉네임"
                 android:textColor="#147AFE"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/input_nickname"
-                android:layout_width="180dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputnickname"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/nickname"
-                android:layout_marginLeft="20dp" />
+                android:layout_centerVertical="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_nickname"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:maxLength="8"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
+                android:id="@+id/input_nickname"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/nickname" />-->
 
             <Button
                 android:id="@+id/check_nickname"
                 style="@style/parent"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/input_nickname"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/textInputnickname"
                 android:background="@color/primaryTextColor"
                 android:text="확인"
                 android:textAlignment="center"
-                android:textSize="12dp"
                 android:textColor="#ffffff"
-                android:textStyle="bold"/>
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/text_address"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="거주 지역"
+                android:textColor="#147AFE"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/text_address"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="검색버튼 Click!"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:textColor="#373a3c"
+                android:textSize="15sp">
+            </TextView>
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_address"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                app:hintEnabled="true"
+                app:hintAnimationEnabled="true"
+                android:hint="주소 검색"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/text_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="text"
+                    android:textSize="15sp"
+                    android:paddingBottom="18dp"
+                    android:paddingStart="15dp"
+                    android:textAlignment="center" />
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <Button
+                android:id="@+id/reg_address"
+                style="@style/parent"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_address"
+                android:background="@color/primaryTextColor"
+                android:text="검색"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:id="@+id/childage"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="자녀나이"
+                android:text="자녀 나이"
+                android:textAlignment="center"
                 android:textColor="#147AFE"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -114,10 +200,11 @@
             <Spinner
                 android:id="@+id/reg_childAge"
                 style="@style/SpinnerStyle1"
-                android:layout_width="180dp"
-                android:layout_height="40dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="23dp"
                 android:layout_toRightOf="@+id/childage"
-                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
                 android:background="@drawable/spinner_background"
                 android:scrollbarThumbVertical="@drawable/scrollbar"
                 android:spinnerMode="dropdown"
@@ -126,60 +213,56 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
 
             <TextView
-                android:id="@+id/text_address"
-                android:layout_width="wrap_content"
+                android:id="@+id/childSex"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="거주지역"
-                android:textColor="#1291FF"
-                android:textSize="15dp"
-                android:textStyle="bold"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_address"
-                android:layout_width="180dp"
-                android:layout_height="40dp"
-                android:layout_toRightOf="@+id/text_address"
-                android:layout_marginLeft="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/spinner_background"
-                    android:inputType="text"
-                    android:minLines="2" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/reg_address"
-                style="@style/parent"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/input_address"
-                android:background="@color/primaryTextColor"
-                android:text="검색"
+                android:text="자녀 성별"
                 android:textAlignment="center"
-                android:textSize="12dp"
-                android:textColor="#ffffff"
-                android:textStyle="bold"/>
+                android:textColor="#147AFE"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
+            <RadioGroup
+                android:id="@+id/radioGroup_sex"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/childSex"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:checkedButton="@+id/radio_boy">
+
+                <RadioButton
+                    android:id="@+id/radio_boy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:text="남자" />
+
+                <RadioButton
+                    android:id="@+id/radio_girl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:text="여자" />
+            </RadioGroup>
         </RelativeLayout>
 
-
         <Button
-            android:id="@+id/btn_home"
+            android:id="@+id/btn_register"
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:text="책장 인식하러 가기" />
+            android:layout_marginTop="25dp"
+            android:text="등록" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
