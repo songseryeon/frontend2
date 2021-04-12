@@ -1,8 +1,21 @@
 package com.example.sharingbookshelf.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.sharingbookshelf.R;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDetailsPopupActivity extends AppCompatActivity {
 
